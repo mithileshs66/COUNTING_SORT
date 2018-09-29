@@ -1,0 +1,50 @@
+#include <iostream>
+
+using namespace std;
+
+void countingsort(int A[], int k, int n)
+{
+  int i, j, arr[100], b[15];
+  for (i = 0; i <= k; i++)
+    {
+      arr[i] = 0;
+    }
+  for (j = 1; j <= n; j++)
+    {
+      arr[A[j]] = arr[A[j]] + 1;
+
+    }
+  for (i = 1; i <= k; i++)
+    {
+      arr[i] = arr[i] + arr[i - 1];
+    }
+  for (j = n; j >= 1; j--)
+    {
+      b[arr[A[j]]] = A[j];
+      arr[A[j]] = arr[A[j]] - 1;
+    }
+  cout << "The array is";
+  for (i = 1; i <= n; i++)
+    {
+      cout << b[i] << " ";
+    }
+}
+
+int main ()
+{
+  int n, i, k = 0, A[15];
+  cout << "Enter the size of array";
+  cin >> n;
+  cout << "The array is ";
+  for (i = 1; i <=n; i++)
+    {
+      cin >> A[i];
+      if (A[i] > k)
+	{
+	  k = A[i];
+	}
+    }
+  countingsort(A, k, n);
+  return 0;
+}
+
